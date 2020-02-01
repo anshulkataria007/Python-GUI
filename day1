@@ -1,0 +1,57 @@
+import tkinter as tk
+from tkinter import ttk
+root =tk.Tk()
+root.title('PyCare')
+#labels
+user=ttk.Label(root,text="Enter Username: ")
+#for dispaly the label we used pack and grid
+user.grid(row=0,column=0,sticky=tk.W)
+
+email=ttk.Label(root,text="Enter your Email Id: ")
+email.grid(row=1,column=0,sticky=tk.W)
+
+age=ttk.Label(root,text="Enter your age: ")
+age.grid(row=2,column=0,sticky=tk.W)
+
+gender=ttk.Label(root,text="Select your gender : ")
+gender.grid(row=3,column=0,sticky=tk.W)
+#create entry box 
+user_var=tk.StringVar()#user box
+user_entrybox=ttk.Entry(root,width=20,textvariable=user_var)
+user_entrybox.grid(row=0,column=1)
+user_entrybox.focus()
+
+age_var=tk.StringVar()#age box
+age_entrybox=ttk.Entry(root,width=20,textvariable=age_var)
+age_entrybox.grid(row=2,column=1)
+
+email_var=tk.StringVar()#email box
+email_entrybox=ttk.Entry(root,width=20,textvariable=email_var)
+email_entrybox.grid(row=1,column=1)
+
+gender_var=tk.StringVar()
+#create a combo box
+gender_combobox=ttk.Combobox(root,width=17,textvariable=gender_var,state='readonly')
+gender_combobox['values']=('Male','Female','Other')
+gender_combobox.current(0)
+gender_combobox.grid(row=3,column=1)
+#create button
+def signin():
+    usename=user_var.get()
+    useage=age_var.get()
+    useemail=email_var.get()
+    usegender=gender_var.get()
+    print(usename,"is",useage,"years old and",usegender,"and emailId is ",useemail)
+submit_button=ttk.Button(root,text="Submit",command=signin)
+submit_button.grid(row=4,column=1)
+#radio button
+usertype=tk.StringVar()
+radiobutton=ttk.Radiobutton(root,text='Student',value='Student',variable=usertype)
+radiobutton.grid(row=5,column=0)
+
+radiobutton=ttk.Radiobutton(root,text='Teacher',value='Teacher',variable=usertype)
+radiobutton.grid(row=5,column=1)
+#checkbutton
+checkbtn=ttk.Checkbutton(root,text='Check if you want to subscribe')
+checkbtn.grid(row=6,columnspan=3)
+root.mainloop()
